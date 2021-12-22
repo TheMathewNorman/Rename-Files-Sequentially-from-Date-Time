@@ -34,41 +34,39 @@ namespace Rename_Files_Sequentially_from_Date_Time
             if (Directory.Exists(fbdSelectedDir.SelectedPath))
             {
                 this.Enabled = false;
+                lblState.Visible = true;
 
                 // Create an enumerable list of files and order by creation date
                 DirectoryInfo di = new DirectoryInfo(fbdSelectedDir.SelectedPath);
                 IEnumerable<FileInfo> iEnFi = di.EnumerateFiles();
-                iEnFi = iEnFi.OrderBy(x => x.CreationTime);
+                iEnFi = iEnFi.OrderBy(x => x.LastWriteTime);
  
                 try
                 {                    
                     int fileCount = iEnFi.Count();
                     int currentFileNameCount = 1;
 
-                    // Rename each file in the directory sequentially by chronological order
+                    //Rename each file in the directory sequentially by chronological order
                     foreach (FileInfo fi in iEnFi)
                     {
                         double currentProgressPercent = Math.Round((double)currentFileNameCount / fileCount * 100, 2);
-
-                        // Get current file's extension
-                        string fileExt = '.' + fi.Name.Split('.')[fi.Name.Split('.').Length - 1];
-
-                        // Log current progress to console window
-                        Console.WriteLine("Progress: {0}% ({1}/{2})", currentProgressPercent, currentFileNameCount, fileCount);
-                        Console.WriteLine("{0} to {1} ({2})", fi.Name, currentFileNameCount, fi.CreationTime);
+                        lblState.Text = "Working (" + currentProgressPercent.ToString() +"%)";
 
                         // Rename the file
-                        File.Move(fi.FullName, fbdSelectedDir.SelectedPath + '\\' + currentFileNameCount + fileExt);
+                        File.Move(fi.FullName, fbdSelectedDir.SelectedPath + '\\' + currentFileNameCount + fi.Extension);
 
                         currentFileNameCount++;
                     }
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                     Console.WriteLine(ex.Message);
                 }
 
                 this.Enabled = true;
+                lblState.Text = "Done";
+                lblState.ForeColor = Color.Green;
             }
         }
     }

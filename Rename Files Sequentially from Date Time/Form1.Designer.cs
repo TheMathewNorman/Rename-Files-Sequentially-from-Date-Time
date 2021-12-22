@@ -34,6 +34,7 @@ namespace Rename_Files_Sequentially_from_Date_Time
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.fbdSelectedDir = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblState = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -77,11 +78,24 @@ namespace Rename_Files_Sequentially_from_Date_Time
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblState.Location = new System.Drawing.Point(13, 58);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(67, 17);
+            this.lblState.TabIndex = 4;
+            this.lblState.Text = "Working";
+            this.lblState.Visible = false;
+            // 
             // frmRenameSequentially
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 90);
+            this.Controls.Add(this.lblState);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtSelectedDir);
@@ -103,6 +117,7 @@ namespace Rename_Files_Sequentially_from_Date_Time
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.FolderBrowserDialog fbdSelectedDir;
+        private System.Windows.Forms.Label lblState;
     }
 }
 
