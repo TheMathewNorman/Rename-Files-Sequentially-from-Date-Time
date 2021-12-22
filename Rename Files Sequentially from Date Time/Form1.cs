@@ -48,10 +48,10 @@ namespace Rename_Files_Sequentially_from_Date_Time
                     // Rename each file in the directory sequentially by chronological order
                     foreach (FileInfo fi in iEnFi)
                     {
+                        double currentProgressPercent = Math.Round((double)currentFileNameCount / fileCount * 100, 2);
+
                         // Get current file's extension
                         string fileExt = '.' + fi.Name.Split('.')[fi.Name.Split('.').Length - 1];
-
-                        double currentProgressPercent = currentFileNameCount / fileCount * 100;
 
                         // Log current progress to console window
                         Console.WriteLine("Progress: {0}% ({1}/{2})", currentProgressPercent, currentFileNameCount, fileCount);
